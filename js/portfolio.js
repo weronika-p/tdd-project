@@ -7,15 +7,16 @@ class Portfolio {
     add(...moneys) {
         this.moneys = this.moneys.concat(moneys)
     }
-    evaluate(currency) {
+    evaluate(bank, currency) {
         let failures = [];
         let total = this.moneys.reduce((sum, money) => {
-            let convertedAmount = this.convert(money, currency);
-            if (convertedAmount === undefined) {
-                failures.push(`${money.currency}->${currency}`);
+            try {
+                let convertedAmount = bank.convert(money, currency);
+                return sum + convertedAmount.amount;
+            } catch (error) {
+                failures.push(error.message);
                 return sum;
             }
-            return sum + convertedAmount;
         }, 0);
         if (!failures.length) {
             return new Money(total, currency);
