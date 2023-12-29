@@ -47,7 +47,7 @@ class MoneyTest {
         let portfolio = new Portfolio();
         portfolio.add(oneDollar, oneEuro, oneWon);
         let exceptedError = new Error('Missing exchange rates: [USD->Kalganid,EUR->Kalganid,KRW->Kalganid]');
-        assert.throws(() => {portfolio.evaluate(this.bank, 'Kalganid')}, exceptedError);
+        assert.throws(() => {portfolio.evaluate(this.bank, 'Kalganid');}, exceptedError);
     }
 
     testConversionWithDifferentRatesBetweenTwoCurrencies() {
@@ -61,7 +61,7 @@ class MoneyTest {
         let bank = new Bank();
         let tenEuros = new Money(10, 'EUR');
         let exceptedError = new Error('EUR->Kalganid');
-        assert.throws(function () {bank.convert(tenEuros, 'Kalganid')}, exceptedError);
+        assert.throws(function () {bank.convert(tenEuros, 'Kalganid');}, exceptedError);
     }
 
     runAllTests() {

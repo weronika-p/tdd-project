@@ -5,7 +5,7 @@ class Portfolio {
         this.moneys = [];
     }
     add(...moneys) {
-        this.moneys = this.moneys.concat(moneys)
+        this.moneys = this.moneys.concat(moneys);
     }
     evaluate(bank, currency) {
         let failures = [];
